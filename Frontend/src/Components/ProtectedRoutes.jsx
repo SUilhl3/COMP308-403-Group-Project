@@ -11,7 +11,7 @@ query GetMe {
     }
 }
 `
-function PrivateRoutes ()  {
+function ProtectedRoutes ()  {
     const {data, loading} = useQuery(ME);
     if (loading) return <p>Loading...</p>
 
@@ -23,4 +23,4 @@ function PrivateRoutes ()  {
     return <Outlet /> 
 }
 
-export default PrivateRoutes;
+export default ProtectedRoutes;

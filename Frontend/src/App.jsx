@@ -9,6 +9,7 @@ import Dashboard from './Pages/Dashboard';
 
 import Navbar from './components/Navbar';
 import ProtectedRoute from './Components/ProtectedRoute';
+import ProtectedRoutes from './Components/ProtectedRoutes';
 
 function App() {
 
@@ -23,15 +24,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
+        {/* Authentication handled with cookies in the backend so the token method below won't work */}
         {/* Protected Route */}
-        <Route
+        {/* <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
           }
-        />
+        /> */}
+        <Route element = {<ProtectedRoutes />}>
+          <Route path = "/dashboard" element = {<Dashboard />} /> 
+        </Route>
       </Routes>
     </>
   )

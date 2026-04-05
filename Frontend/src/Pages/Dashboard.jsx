@@ -10,9 +10,9 @@ function Dashboard() {
   return (
     <div>
       <h2>Dashboard</h2>
-      <p>Welcome, {data.currentUser.username}</p>
-      <p>Email: {data.currentUser.email}</p>
-      <p>Role: {data.currentUser.role}</p>
+      <p>Welcome, {data.me.username}</p>
+      <p>Email: {data.me.email}</p>
+      <p>Role: {data.me.role}</p>
     </div>
   );
 }
