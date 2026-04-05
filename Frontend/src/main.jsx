@@ -3,8 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client"
-import {ApolloProvider} from "@apollo/client"
+import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from "@apollo/client"
+
+import { BrowserRouter } from "react-router-dom"
 
 const link = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -16,11 +17,12 @@ const client = new ApolloClient({
   link
 })
 
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ApolloProvider client = {client}>
-      <App />
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloProvider>
   </StrictMode>,
 )

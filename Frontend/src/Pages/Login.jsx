@@ -1,57 +1,91 @@
 import { useState } from "react";
-import {gql, useMutation} from "@apollo/client"
-import { useNavigate } from "react-router-dom";
+import { gql, useMutation } from "@apollo/client";
+import { useNavigate, Link } from "react-router-dom";
 
-
-const LOGIN = gql `
-mutation LoginUser($username: String!, $password: String!)
-{
-    loginUser(username: $username, password: $password)
-    {
-        id
-        username
-        email
+const LOGIN = gql`
+  mutation LoginUser($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
+      id
+      username
+      email
     }
-}
-`
+  }
+`;
 
-function Login()
-{
-    const navigate = useNavigate();
-    const [loginUser, {loading: loggingIn, error: addError}] = useMutation(LOGIN);
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [success, setSuccess] = useState("");
+function Login() {
+  const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
 
-        await loginUser({variables: {username: username, password: password}});
-        
-        //should probably make this a toast message later but this is fine for now
-        setSuccess("Login Successful");
-        setTimeout(() => {
-            navigate("/dashboard");
-        }, 2000)
+  const [message, setMessage] = useState("");
+
+  const [loginUser, { loading, error }] = useMutation(LOGIN);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await loginUser({
+        variables: {
+          username: formData.username,
+          password: formData.password
+        }
+      });
+
+      localStorage.setItem("user", JSON.stringify(data.loginUser));
+
+      setMessage("Login successful");
+
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
     }
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <label>
-                    Username:
-                    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}/>
-                </label>
-                <label>
-                    Password:
-                    <input type='text' value={password} onChange={(e) => setPassword(e.target.value)}/>
-                </label>
-                <button type="submit">Login</button>
-            </form>
-            {addError && <p>{addError.message}</p>}
-            {success && <p>{success}</p>}            
-        </div>
-    )
+  };
+
+  return (
+    <div>
+      <h2>Login</h2>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
+
+      {message && <p>{message}</p>}
+      {error && <p>{error.message}</p>}
+
+      <p>
+        Don’t have an account? <Link to="/register">Register</Link>
+      </p>
+    </div>
+  );
 }
 
 export default Login;
