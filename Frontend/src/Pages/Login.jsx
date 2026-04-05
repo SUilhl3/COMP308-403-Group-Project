@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate, Link } from "react-router-dom";
+import { GET_CURRENT_USER } from "../graphql/queries";
 
 const LOGIN = gql`
   mutation LoginUser($username: String!, $password: String!) {
@@ -22,7 +23,10 @@ function Login() {
 
   const [message, setMessage] = useState("");
 
-  const [loginUser, { loading, error }] = useMutation(LOGIN);
+  const [loginUser, { loading, error }] = useMutation(LOGIN, {
+    refetchQueries: [GET_CURRENT_USER],
+    awaitRefetchQueries: true
+  });
 
   const handleChange = (e) => {
     setFormData({
