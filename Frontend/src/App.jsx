@@ -10,6 +10,7 @@ import Home from "./Pages/Home";
 import Register from './Pages/Register';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
+import PrivateRoutes from './Components/ProtectedRoutes';
 
 function App() {
 
@@ -21,7 +22,9 @@ function App() {
         <Route path = "home" element = {<Home />} />
         <Route path = "login" element = {<Login />} />
         <Route path = "register" element = {<Register />} />
-        <Route path = "dashboard" element = {<Dashboard />} />
+        <Route element = {<PrivateRoutes />}>
+          <Route path = "dashboard" element = {<Dashboard />} />
+        </Route>
       </Routes>
     </Router>
     </>

@@ -32,6 +32,7 @@ function Register()
 
         await registerUser({variables: {username: username, password: password, email: email}});
         
+        //should probably make this a toast message later but this is fine for now
         setSuccess("Account created successfully");
         setTimeout(() => {
             navigate("/login");
