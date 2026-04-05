@@ -1,11 +1,12 @@
-import mongoose from "mongoose";
+import dotenv from "dotenv";
 import { User } from "../../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-//need to put in .env later
-const JWT_SECRET = "secret_key";
-const jwtExpirySeconds = 300;
+dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
+const jwtExpirySeconds = Number(process.env.JWT_EXPIRY);
 
 export const userResolvers = {
     Query: {
