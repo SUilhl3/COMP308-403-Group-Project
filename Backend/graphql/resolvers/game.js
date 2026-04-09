@@ -1,0 +1,99 @@
+import dotenv from "dotenv";
+import {Game} from "../../models/Game.js";
+import jwt from "jsonwebtoken"
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
+export const gameResolvers = {
+    Query: {
+        myGames: async (_, args, context) => {
+            const token = context.req.cookies.token;
+            if (!token) {
+                throw new Error("Not Logged In");
+            }
+            const payload = jwt.verify(token, JWT_SECRET);
+
+            return await Game.find({user: payload._id}).sort({createdAt: -1});
+        },
+
+        game: async(_, args, context) => {
+            const token = context.req.cookies.token;
+            if (!token) {
+                throw new Error("Not Logged In");
+            }
+            const payload = jwt.verify(token, JWT_SECRET);
+
+            const game = await Game.findOne({
+                _id: args.id,
+                user: payload._id
+            })
+            if (!game){
+                throw new Error("Game Not Found");
+            }
+            return game;
+        }
+    },
+
+    Mutation: {
+        addGame: async(_, args, context) => {
+            const token = context.req.cookies.token;
+            if (!token) {
+                throw new Error("Not Logged In");
+            }
+            const payload = jwt.verify(token, JWT_SECRET);
+            
+            const game = new Game({
+                ...args.input,
+                user: payload._id,
+                createdAt: new Date()
+            })
+
+            await game.save();
+            return game;
+        },
+
+        updateGame: async(_, args, context) => {
+            const token = context.req.cookies.token;
+            if (!token) {
+                throw new Error("Not Logged In");
+            }
+            const payload = jwt.verify(token, JWT_SECRET)
+
+            const game = await Game.findById(args.id)
+
+            if (!game)
+            {
+                throw new Error("Game Not Found");
+            }
+
+            if (game.user != payload._id)
+            {
+                throw new Error("Not Authorized");
+            }
+
+            return Game.findByIdAndUpdate(args.id, args.input)
+        },
+
+        deleteGame: async(_, args, context) => {
+            const token = context.req.cookies.token;
+            if (!token) {
+                throw new Error("Not Logged In");
+            }
+            const payload = jwt.verify(token, JWT_SECRET)
+
+            const game = await Game.findById(args.id)
+
+            if (!game)
+            {
+                throw new Error("Game Not Found");
+            }
+
+            if (game.user != payload._id)
+            {
+                throw new Error("Not Authorized");
+            }
+
+            return Game.findByIdAndDelete(args.id);
+        }
+    }
+}
