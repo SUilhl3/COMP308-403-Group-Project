@@ -1,31 +1,14 @@
 import { useState } from "react";
-import { gql, useMutation } from "@apollo/client";
 import { useNavigate, Link } from "react-router-dom";
-import { GET_CURRENT_USER } from "../graphql/queries";
+import { useUser } from "../Hooks/useUser";
 
-const LOGIN = gql`
-  mutation LoginUser($username: String!, $password: String!) {
-    loginUser(username: $username, password: $password) {
-      id
-      username
-      email
-    }
-  }
-`;
 
 function Login() {
   const navigate = useNavigate();
-
+  const {login, loading, error, message, setMessage} = useUser();
   const [formData, setFormData] = useState({
     username: "",
     password: ""
-  });
-
-  const [message, setMessage] = useState("");
-
-  const [loginUser, { loading, error }] = useMutation(LOGIN, {
-    refetchQueries: [GET_CURRENT_USER],
-    awaitRefetchQueries: true
   });
 
   const handleChange = (e) => {
@@ -38,21 +21,10 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const { data } = await loginUser({
-        variables: {
-          username: formData.username,
-          password: formData.password
-        }
-      });
-
-      localStorage.setItem("user", JSON.stringify(data.loginUser));
-
-      setMessage("Login successful");
-
-      navigate("/dashboard");
-    } catch (err) {
-      console.error(err);
+    await login(formData.username, formData.password, navigate)
+    if (!error)
+    {
+      setMessage("");
     }
   };
 

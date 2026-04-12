@@ -1,15 +1,16 @@
 import {Navigate, Outlet} from 'react-router-dom'
-import {useQuery} from "@apollo/client"
-import { GET_CURRENT_USER } from '../graphql/queries';
+import { useUser } from '../Hooks/useUser';
 
 function ProtectedRoutes ()  {
-    const {data, loading} = useQuery(GET_CURRENT_USER, {
-        fetchPolicy: "network-only"
-    });
-    if (loading) return <p>Loading...</p>
+    const { user, loadingUser } = useUser();
 
-    if (!data?.me)
-    {
+    
+    if (loadingUser) {
+        return <div>Loading...</div>; 
+    }
+
+    
+    if (!user) {
         return <Navigate to="/login" />;
     }
 

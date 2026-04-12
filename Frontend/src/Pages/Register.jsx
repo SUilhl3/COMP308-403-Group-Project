@@ -1,29 +1,16 @@
 import { useState } from "react";
-import { gql, useMutation } from "@apollo/client";
 import { useNavigate, Link } from "react-router-dom";
-
-const REGISTER = gql`
-  mutation RegisterUser($username: String!, $password: String!, $email: String!) {
-    registerUser(username: $username, password: $password, email: $email) {
-      id
-      username
-      email
-    }
-  }
-`;
+import { useUser } from "../Hooks/useUser";
 
 function Register() {
   const navigate = useNavigate();
+  const {register, loadingRegister, errorRegister, message, setMessage} = useUser();
 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: ""
   });
-
-  const [message, setMessage] = useState("");
-
-  const [registerUser, { loading, error }] = useMutation(REGISTER);
 
   const handleChange = (e) => {
     setFormData({
@@ -35,23 +22,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await registerUser({
-        variables: {
-          username: formData.username,
-          email: formData.email,
-          password: formData.password
-        }
-      });
-
-      setMessage("Account created successfully");
-
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
-    } catch (err) {
-      console.error(err);
-    }
+    await register(formData.username, formData.email, formData.password, navigate)
   };
 
   return (
@@ -83,13 +54,13 @@ function Register() {
           onChange={handleChange}
         />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Registering..." : "Register"}
+        <button type="submit" disabled={loadingRegister}>
+          {loadingRegister ? "Registering..." : "Register"}
         </button>
       </form>
 
       {message && <p>{message}</p>}
-      {error && <p>{error.message}</p>}
+      {errorRegister && <p>{errorRegister.message}</p>}
 
       <p>
         Already have an account? <Link to="/login">Login</Link>
