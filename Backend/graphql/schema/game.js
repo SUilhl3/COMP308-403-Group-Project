@@ -19,7 +19,6 @@ input AddGameInput {
     rating: Int,
     releaseDate: String,
     imageUrl: String
-    createdAt: String
 }
 
 input UpdateGameInput {

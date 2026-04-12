@@ -13,6 +13,7 @@ import { UserProvider } from './Context/UserContext';
 import UpdateAccount from './Pages/UpdateAccount'
 import AddGame from './Pages/AddGame';
 import ViewGames from './Pages/ViewGames';
+import ViewSingleGame from './Pages/ViewSingleGame';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path = "/update" element = {<UpdateAccount />} />
             <Route path = "/addGame" element = {<AddGame />} />
             <Route path = "/games" element = {<ViewGames />} />
+            <Route path = "/game" element = {<ViewSingleGame />} />
           </Route>
         </Routes> 
       </UserProvider>

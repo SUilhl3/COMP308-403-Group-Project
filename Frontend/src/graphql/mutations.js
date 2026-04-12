@@ -45,3 +45,19 @@ mutation DeleteUser($id: ID!)
   deleteUser(id: $id)
 }
 `
+
+export const ADD_GAME = gql`
+mutation AddGame($input: AddGameInput!)
+{
+  addGame(input: $input)
+  {
+    title
+    platform
+    description
+    status
+    rating
+    releaseDate
+    imageUrl
+  }
+}
+`
