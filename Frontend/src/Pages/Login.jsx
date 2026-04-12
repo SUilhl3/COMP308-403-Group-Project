@@ -33,37 +33,44 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div class = "flex items-center justify-center min-h-screen bg-gray-500">
+      <div class= "w-full max-w-lg bg-white p-20 rounded-lg shadow-lg">
+        <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
-        <TextField
-          type="text"
-          name="username"
-          placeholder="Enter username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-
-        <TextField
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <Button variant = "contained" startIcon = {<LoginIcon />} type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </Button>
+        <form onSubmit={handleSubmit}>
+          <div class = "p-5">
+            <TextField
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          </div>
+          <div class = "p-5">
+            <TextField
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          </div>
+          
+          <div class= "p-5">
+            <Button variant = "contained" startIcon = {<LoginIcon />} type="submit" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </Button>
+          </div>
       </form>
 
-      {message && <p>{message}</p>}
-      {error && <p>{error.message}</p>}
+        {message && <p>{message}</p>}
+        {error && <p>{error.message}</p>}
 
-      <p>
-        Don’t have an account? <Link to="/register">Register</Link>
-      </p>
+        <p>
+          Don’t have an account? <Link to="/register">Register</Link>
+        </p>
+      </div>
     </div>
   );
 }
