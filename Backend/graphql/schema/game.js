@@ -6,6 +6,7 @@ type Game {
     status: String,
     rating: Int,
     releaseDate: String,
+    imageUrl: String
     createdAt: String
 }
 
@@ -15,6 +16,7 @@ input AddGameInput {
     status: String,
     rating: Int,
     releaseDate: String,
+    imageUrl: String
     createdAt: String
 }
 
@@ -24,6 +26,7 @@ input UpdateGameInput {
     status: String,
     rating: Int,
     releaseDate: String,
+    imageUrl: String
 }
 
 type Query {

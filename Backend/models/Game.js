@@ -7,6 +7,7 @@ const gameSchema = new mongoose.Schema({
     status: {type: String, enum: ["Playing", "Completed", "Backlog", "Re-playing"], default: "Backlog" },
     rating: {type: Number, min: 0, max: 10},
     releaseDate: {type: Date},
+    imageUrl: {type: String},
     createdAt: {type: Date, default: Date.now}
 })
 
