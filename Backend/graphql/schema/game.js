@@ -3,6 +3,7 @@ type Game {
     id: ID!,
     title: String!,
     platform: String,
+    description: String
     status: String,
     rating: Int,
     releaseDate: String,
@@ -13,6 +14,7 @@ type Game {
 input AddGameInput {
     title: String!
     platform: String,
+    description: String
     status: String,
     rating: Int,
     releaseDate: String,
