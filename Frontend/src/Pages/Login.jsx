@@ -4,6 +4,7 @@ import { useUser } from "../Hooks/useUser";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import LoginIcon from "@mui/icons-material/Login"
 
 function Login() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ function Login() {
           onChange={handleChange}
         />
 
-        <Button variant = "contained" type="submit" disabled={loading}>
+        <Button variant = "contained" startIcon = {<LoginIcon />} type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </Button>
       </form>

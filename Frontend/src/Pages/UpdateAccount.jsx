@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import DeleteIcon from "@mui/icons-material/Delete"
+import SendIcon from "@mui/icons-material/Send"
 
 function UpdateAccount()
 {
@@ -110,14 +112,14 @@ function UpdateAccount()
                         onChange={handleChange}
                     />
                 </div>
-                <Button type="submit">Update</Button>
+                <Button type="submit" variant="contained" startIcon={<SendIcon />}>Update</Button>
             </form>
 
             {message && <p>{message}</p>}
         </div>
 
         <div>
-            <Button onClick={handleDelete}>Delete Account</Button>        
+            <Button onClick={handleDelete} variant="contained" color="error" startIcon={<DeleteIcon />} >Delete Account</Button>        
         </div>
         </>
     )

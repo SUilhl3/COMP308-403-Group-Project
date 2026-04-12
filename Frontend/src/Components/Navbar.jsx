@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../Hooks/useUser";
-
+import Button from "@mui/material/Button";
+import LogoutIcon from "@mui/icons-material/Logout"
 function Navbar() {
   const navigate = useNavigate();
   const { user, logout } = useUser();
@@ -24,7 +25,7 @@ function Navbar() {
           <Link to="/update">Update Account</Link> |{" "}
           <Link to="/addGame">Add Game</Link> |{" "}
           <Link to="/games">View Games</Link> |{" "}
-          <button onClick={handleLogout}>Logout</button>
+          <Button onClick={handleLogout} variant = "outlined" startIcon={<LogoutIcon />}>Logout</Button>
         </>
       )}
     </nav>

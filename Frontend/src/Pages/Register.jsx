@@ -4,6 +4,8 @@ import { useUser } from "../Hooks/useUser";
 
 import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField";
+import SendIcon from "@mui/icons-material/Send"
+
 
 function Register() {
   const navigate = useNavigate();
@@ -58,7 +60,7 @@ function Register() {
           onChange={handleChange}
         />
 
-        <Button variant = "contained" type="submit" disabled={loadingRegister}>
+        <Button variant = "contained" type="submit" startIcon={<SendIcon />} disabled={loadingRegister}>
           {loadingRegister ? "Registering..." : "Register"}
         </Button>
       </form>
