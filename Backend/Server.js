@@ -32,7 +32,7 @@ async function start()
 
     const app = express()
     app.use(cors( {
-        origin: "http://localhost:5173",
+        origin: "https://comp308-403-group-project-1.vercel.app",
         credentials: true
     }
     ))
