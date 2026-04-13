@@ -8,7 +8,7 @@ import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from "@ap
 import { BrowserRouter } from "react-router-dom"
 
 const link = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: import.meta.env.VITE_API_URL,
   credentials: 'include'
 })
 
