@@ -34,7 +34,7 @@ function App() {
             <Route path = "/update" element = {<UpdateAccount />} />
             <Route path = "/addGame" element = {<AddGame />} />
             <Route path = "/games" element = {<ViewGames />} />
-            <Route path = "/game" element = {<ViewSingleGame />} />
+            <Route path="/game/:id" element={<ViewSingleGame />} />
           </Route>
         </Routes> 
       </UserProvider>

@@ -61,3 +61,28 @@ mutation AddGame($input: AddGameInput!)
   }
 }
 `
+
+export const UPDATE_GAME = gql`
+mutation UpdateGame($id: ID!, $input: UpdateGameInput!)
+{
+  updateGame(id: $id, input: $input)
+  {
+    id
+    title
+    platform
+    description
+    status
+    rating
+    releaseDate
+    imageUrl
+    createdAt
+  }
+}
+`
+
+export const DELETE_GAME = gql`
+mutation DeleteGame($id: ID!)
+{
+  deleteGame(id: $id)
+}
+`
