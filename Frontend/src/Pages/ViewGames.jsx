@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { GET_MY_GAMES } from "../graphql/queries";
-
+import Rating from "@mui/material/Rating";
 function ViewGames() {
   const { loading, error, data } = useQuery(GET_MY_GAMES);
 
@@ -40,7 +40,12 @@ function ViewGames() {
 
               <p><strong>Platform:</strong> {game.platform || "N/A"}</p>
               <p><strong>Status:</strong> {game.status || "N/A"}</p>
-              <p><strong>Rating:</strong> {game.rating ?? "N/A"}</p>
+              <p><strong>Rating:</strong> {
+                game.rating !== undefined && game.rating !== null ?
+                <Rating value={game.rating} max={10} disabled={true}/> 
+                : "N/A"
+                }
+              </p>
 
               <Link to={`/game/${game.id}`}>View Details</Link>
             </div>

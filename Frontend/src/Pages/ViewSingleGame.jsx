@@ -6,6 +6,7 @@ import { UPDATE_GAME, DELETE_GAME } from "../graphql/mutations";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Rating from "@mui/material/Rating";
 function ViewSingleGame() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -122,7 +123,12 @@ function ViewSingleGame() {
           <p><strong>Platform:</strong> {game.platform || "N/A"}</p>
           <p><strong>Description:</strong> {game.description || "No description"}</p>
           <p><strong>Status:</strong> {game.status || "N/A"}</p>
-          <p><strong>Rating:</strong> {game.rating ?? "N/A"}</p>
+          <p><strong>Rating:</strong> {
+            game.rating !== undefined && game.rating !== null ?
+            <Rating value={game.rating} max={10} disabled={true}/> 
+            : "N/A"
+            }
+          </p>
           <p>
             <strong>Release Date:</strong>{" "}
             {game.releaseDate && !isNaN(game.releaseDate) 
@@ -192,13 +198,11 @@ function ViewSingleGame() {
 
           <div>
             <label>Rating:</label><br />
-            <TextField
-              type="number"
+            <Rating
               name="rating"
               value={formData.rating}
               onChange={handleChange}
-              min="1"
-              max="10"
+              max={10}
             />
           </div>
 

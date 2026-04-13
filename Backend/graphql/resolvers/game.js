@@ -13,9 +13,16 @@ export const gameResolvers = {
             }
             const payload = jwt.verify(token, JWT_SECRET);
 
-            return await Game.find({user: payload._id}).sort({createdAt: -1});
-        },
+            const userGames = await Game.find({user: payload._id}).sort({createdAt: -1});
 
+            if (!userGames)
+            {
+                throw new Error("No Games Found")
+            }
+
+            return userGames;
+        },
+        
         game: async(_, args, context) => {
             const token = context.req.cookies.token;
             if (!token) {

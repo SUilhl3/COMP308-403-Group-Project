@@ -59,6 +59,7 @@ function UpdateAccount()
         } catch (error)
         {
             console.error("Error Updating User: ", error)
+            setMessage("Error Updating Account");
         }
     }
 

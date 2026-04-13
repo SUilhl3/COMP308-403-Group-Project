@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Rating from "@mui/material/Rating";
+
+import { GET_MY_GAMES } from "../graphql/queries";
 
 function AddGame() {
   const navigate = useNavigate();
@@ -59,6 +62,7 @@ function AddGame() {
 
     await addGame({
       variables: { input },
+      refetchQueries: [{query: GET_MY_GAMES}]
     });
   };
 
@@ -113,12 +117,11 @@ function AddGame() {
 
           <div>
             <label>Rating (0-10):</label>
-            <TextField
-              type="number"
+            <Rating 
               name="rating"
-              inputProps={{ min: 0, max: 10 }}
               value={formData.rating}
               onChange={handleChange}
+              max={10}
             />
           </div>
 
