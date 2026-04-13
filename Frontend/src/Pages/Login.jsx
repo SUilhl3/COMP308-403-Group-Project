@@ -38,8 +38,8 @@ function Login() {
   };
 
   return (
-    <div class = "flex items-center justify-center min-h-screen bg-gray-500">
-      <div class= "w-full max-w-lg bg-white p-20 rounded-lg shadow-lg">
+    <div class = "flex items-center justify-center min-h-screen bg-linear-to-t from [#08ffda] to [#10b1ae]">
+      <div class= "w-full max-w-lg bg-gradient-to-r from-blue-200 to-cyan-200 p-20 rounded-lg shadow-lg">
         <h2>Login</h2>
 
         <form onSubmit={handleSubmit}>
@@ -73,7 +73,7 @@ function Login() {
         {error && <p>{error.message}</p>}
 
         <p>
-          Don’t have an account? <Link to="/register">Register</Link>
+          Don’t have an account? <Link to="/register" class="font-medium text-fg-brand hover:underline">Register</Link>
         </p>
       </div>
     </div>
