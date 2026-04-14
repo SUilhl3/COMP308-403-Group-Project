@@ -23,7 +23,7 @@ function ViewGames() {
             <div
               key={game.id}
               style={{
-                border: "1px solid #ccc",
+                border: "4px solid #ccc",
                 padding: "16px",
                 marginBottom: "16px",
                 borderRadius: "8px"
