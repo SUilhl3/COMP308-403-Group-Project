@@ -118,6 +118,7 @@ function ViewSingleGame() {
             <img
               src={game.imageUrl}
               alt={game.title}
+              class="block mx-auto w-[300px] mb-4"
               style={{ width: "300px", height: "auto", marginBottom: "16px"}}
             />
           )}
