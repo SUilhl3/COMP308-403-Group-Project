@@ -148,7 +148,7 @@ function ViewSingleGame() {
             Edit
           </button>
 
-          <button variant = "contained" onClick={handleDelete} disabled={deleting}>
+          <button className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700">
             {deleting ? "Deleting..." : "Delete"}
           </button>
         </div> //view page
