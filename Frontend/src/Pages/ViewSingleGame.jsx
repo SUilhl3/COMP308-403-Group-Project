@@ -144,7 +144,7 @@ function ViewSingleGame() {
               : "N/A"}
           </p>
 
-          <button variant = "contained" onClick={handleEditClick}  style={{ marginRight: "10px" }}>
+          <button variant = "contained" onClick={handleEditClick} >
             Edit
           </button>
 
