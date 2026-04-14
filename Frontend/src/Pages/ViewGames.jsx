@@ -48,7 +48,7 @@ function ViewGames() {
                 }
               </p>
 
-              <Link to={`/game/${game.id}`}>View Details</Link>
+              <Link class="font-medium text-fg-brand hover:underline" to={`/game/${game.id}`}>View Details</Link>
             </div>
           ))}
         </div>

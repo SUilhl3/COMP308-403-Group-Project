@@ -108,7 +108,9 @@ function ViewSingleGame() {
 
   return (
     <div>
-      <h1>{game.title}</h1>
+      <div class = "flex items-center justify-center">
+        <div class = "w-full max-w-lg bg-gradient-to-r from-blue-200 to-cyan-200 p-20 rounded-lg shadow-lg">
+          <h1>{game.title}</h1>
 
       {!isEditing ? (
         <div>
@@ -142,16 +144,16 @@ function ViewSingleGame() {
               : "N/A"}
           </p>
 
-          <button onClick={handleEditClick} style={{ marginRight: "10px" }}>
+          <button onClick={handleEditClick} variant = "contained" style={{ marginRight: "10px" }}>
             Edit
           </button>
 
-          <button onClick={handleDelete} disabled={deleting}>
+          <button variant = "contained" onClick={handleDelete} disabled={deleting}>
             {deleting ? "Deleting..." : "Delete"}
           </button>
-        </div>
+        </div> //view page
       ) : (
-        <form onSubmit={handleUpdate}>
+        <form onSubmit={handleUpdate}> //edit page
           <div>
             <label>Title:</label><br />
             <TextField
@@ -228,15 +230,17 @@ function ViewSingleGame() {
 
           <br />
 
-          <button type="submit" disabled={updating} style={{ marginRight: "10px" }}>
+          <button type="submit" variant = "contained" disabled={updating} style={{ marginRight: "10px" }}>
             {updating ? "Saving..." : "Save Changes"}
           </button>
 
-          <button type="button" onClick={() => setIsEditing(false)}>
+          <button type="button" variant = "contained" onClick={() => setIsEditing(false)}>
             Cancel
           </button>
         </form>
       )}
+      </div>
+      </div>
     </div>
   );
 }
