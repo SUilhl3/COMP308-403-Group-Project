@@ -5,7 +5,7 @@ function Home()
 {
     return (
         <div class = "flex items-center justify-center">
-         <div class = "w-full max-w-lg bg-linear-to-tr from-teal-200 to-red-400 p-20 rounded-lg shadow-lg">
+         <div class = "w-full max-w-lg bg-gradient-to-r from-blue-200 to-cyan-200p-20 rounded-lg shadow-lg">
             <h1>Home</h1>
             <p> Welcome to the page! Create a backlog list for your video games here!</p>
             <i>Want to get started?</i> <Link to="/register" class="font-medium text-fg-brand hover:underline">Create an Account</Link>
