@@ -144,11 +144,11 @@ function ViewSingleGame() {
               : "N/A"}
           </p>
 
-          <button className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700">
+          <button onClick={handleEditClick} className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700">
             Edit
           </button>
 
-          <button className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700">
+          <button className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700" onClick={handleDelete} disabled={deleting}>
             {deleting ? "Deleting..." : "Delete"}
           </button>
         </div> //view page
@@ -219,7 +219,7 @@ function ViewSingleGame() {
           </div>
 
           <div>
-            <label><b>Image URL:</b></label><br />
+            <label><b></b>Image URL:</label><br />
             <TextField
               type="text"
               name="imageUrl"
@@ -230,11 +230,11 @@ function ViewSingleGame() {
 
           <br />
 
-          <button type="submit" variant = "contained" disabled={updating} style={{ marginRight: "10px" }}>
+          <button type="submit" className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700" disabled={updating} >
             {updating ? "Saving..." : "Save Changes"}
           </button>
 
-          <button type="button" variant = "contained" onClick={() => setIsEditing(false)}>
+          <button type="button" className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700" onClick={() => setIsEditing(false)}>
             Cancel
           </button>
         </form>
