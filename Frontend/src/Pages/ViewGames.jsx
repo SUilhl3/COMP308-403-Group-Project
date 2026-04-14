@@ -17,8 +17,9 @@ function ViewGames() {
       {games.length === 0 ? (
         <p>No games added yet.</p>
       ) : (
-        <div>
-          {games.map((game) => (
+        <div class = "flex items-center justify-center">
+         <div class = "w-full max-w-lg bg-gradient-to-r from-blue-200 to-cyan-200 p-20 rounded-lg shadow-lg">
+         {games.map((game) => (
             <div
               key={game.id}
               style={{
@@ -51,8 +52,10 @@ function ViewGames() {
             </div>
           ))}
         </div>
+        </div>
       )}
     </div>
+    
   );
 }
 
