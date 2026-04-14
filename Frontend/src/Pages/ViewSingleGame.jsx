@@ -155,7 +155,6 @@ function ViewSingleGame() {
         </div> //view page
       ) : (
         <form onSubmit={handleUpdate}>
-          <h1>Edit Game</h1>
           <div>
             <label><b>Title:</b></label><br />
             <TextField
