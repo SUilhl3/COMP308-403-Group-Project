@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../Hooks/useUser";
+import listofgames from "/src/assets/listofgames.png";
+
 function Home()
 {
     return (
         <div class = "flex items-center justify-center">
-         <div class = "w-full max-w-lg bg-gradient-to-r from-blue-200 to-cyan-200p-20 rounded-lg shadow-lg">
+         <div class = "w-full max-w-lg bg-gradient-to-r from-blue-200 to-cyan-200 p-20 rounded-lg shadow-lg">
             <h1>Home</h1>
             <p> Welcome to the page! Create a backlog list for your video games here!</p>
+        <img src={listofgames} className="block mx-auto w-[3500px] mb-4"/>
+
             <i>Want to get started?</i> <Link to="/register" class="font-medium text-fg-brand hover:underline">Create an Account</Link>
             <br></br>
             <i>Already have an account?</i> <Link to="/login" class="font-medium text-fg-brand hover:underline">Login</Link>
