@@ -144,7 +144,7 @@ function ViewSingleGame() {
               : "N/A"}
           </p>
 
-          <button variant = "contained" onClick={handleEditClick} >
+          <button className="mr-3 bg-blue-500 text-white font-medium px-4 py-2 rounded shadow hover:bg-blue-600 active:bg-blue-700">
             Edit
           </button>
 
