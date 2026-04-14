@@ -39,7 +39,7 @@ function Login() {
 
   return (
     <div class = "flex items-center justify-center min-h-screen bg-linear-to-t from [#08ffda] to [#10b1ae]">
-      <div class= "w-full max-w-lg bg-linear-to-br from-zinc-900 to-blue-400 rounded-lg shadow-lg">
+      <div class= "w-full max-w-lg bg-linear-to-br from-teal-600 to-blue-400 p-20 rounded-lg shadow-lg">
         <h2>Login</h2>
 
         <form onSubmit={handleSubmit}>
